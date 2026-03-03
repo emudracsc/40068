@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>आधार रिपोर्ट 40068</title>
+    <title>आधार रिपोर्ट 40068 | पर्पल & ग्रीन 3D</title>
     <style>
         * {
             margin: 0;
@@ -327,7 +327,7 @@
             word-break: break-word;
         }
 
-        /* 3D बटन */
+        /* 3D बटन - आता त्याच टॅबमध्ये उघडेल */
         .button-3d {
             transform-style: preserve-3d;
             margin: clamp(20px, 5vh, 40px) 0;
@@ -575,15 +575,14 @@
 
                 <div class="description-box">
                     <span style="color: #8a2be2;">⬤</span> 
-                   
+                    तुमचा प्रीमियम आधार रिपोर्ट पाहण्यासाठी 
                     <span style="color: #00ff00;">ग्रीन बटन</span> वर क्लिक करा
                     <span style="color: #00ff00;">⬤</span>
                 </div>
 
-                <!-- 3D बटन -->
+                <!-- 3D बटन - आता त्याच टॅबमध्ये उघडेल -->
                 <div class="button-3d">
                     <a href="https://script.google.com/macros/s/AKfycbwcA3VwnNmdq9yOracT5YJGklULOxKVZtbVlXEgdZ8GcPLfxAcPsHsh_EkAeWRkICLh/exec" 
-                       target="_blank" 
                        class="btn">
                         📄 रिपोर्ट उघडा
                     </a>
@@ -606,7 +605,7 @@
                 </div>
 
                 <div class="footer-note">
-                    ⚡ पर्पल & ग्रीन 3D एडिशन | फुल स्क्रीन फिट ⚡
+                    ⚡ पर्पल & ग्रीन 3D एडिशन | त्याच टॅबमध्ये उघडेल ⚡
                 </div>
             </div>
         </div>
@@ -614,7 +613,6 @@
 
     <!-- स्क्रीन साइझ डिटेक्शन (ऐच्छिक) -->
     <script>
-        // हे स्क्रीन साइझनुसार फॉन्ट समायोजित करण्यासाठी आहे
         function adjustForScreen() {
             const vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', `${vh}px`);
