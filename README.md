@@ -575,7 +575,7 @@
 
                 <div class="description-box">
                     <span style="color: #8a2be2;">⬤</span> 
-                    तुमचा प्रीमियम आधार रिपोर्ट पाहण्यासाठी 
+                   
                     <span style="color: #00ff00;">ग्रीन बटन</span> वर क्लिक करा
                     <span style="color: #00ff00;">⬤</span>
                 </div>
