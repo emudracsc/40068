@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>आधार रिपोर्ट 40068 | पर्पल & ग्रीन 3D</title>
+    <title>आधार रिपोर्ट 40068</title>
     <style>
         * {
             margin: 0;
