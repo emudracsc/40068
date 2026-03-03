@@ -2,8 +2,8 @@
 <html lang="mr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>आधार रिपोर्ट 40068 | 3D क्लासिक एडिशन</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>आधार रिपोर्ट 40068 | पर्पल & ग्रीन 3D</title>
     <style>
         * {
             margin: 0;
@@ -11,72 +11,117 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at 20% 20%, #2b1a4a, #0f0c1f);
+            background: radial-gradient(circle at 0% 0%, #1a0f2e, #0a1f1a, #0a0a1f);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
             perspective: 1200px;
-            overflow-x: hidden;
+            position: relative;
         }
 
-        /* 3D सीन सेटअप */
+        /* फुल स्क्रीन 3D बॅकग्राउंड */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(128, 0, 255, 0.05) 0px,
+                rgba(128, 0, 255, 0.05) 20px,
+                rgba(0, 255, 0, 0.05) 20px,
+                rgba(0, 255, 0, 0.05) 40px
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* मुख्य कंटेनर - फुल स्क्रीन फिट */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding: 10px;
+        }
+
+        /* 3D सीन */
         .scene {
             position: relative;
             width: 100%;
-            max-width: 600px;
             transform-style: preserve-3d;
-            animation: sceneRotate 20s infinite alternate ease-in-out;
+            animation: sceneFloat 15s infinite alternate ease-in-out;
         }
 
-        @keyframes sceneRotate {
-            0% { transform: rotateY(-2deg) rotateX(2deg); }
-            100% { transform: rotateY(2deg) rotateX(-2deg); }
+        @keyframes sceneFloat {
+            0% { transform: perspective(1200px) rotateY(-3deg) rotateX(2deg) translateZ(0); }
+            100% { transform: perspective(1200px) rotateY(3deg) rotateX(-2deg) translateZ(20px); }
         }
 
-        /* मुख्य कार्ड - 3D ट्रान्सफॉर्मेशन */
+        /* मुख्य कार्ड */
         .card {
-            background: rgba(20, 15, 40, 0.85);
-            backdrop-filter: blur(15px);
-            border-radius: 40px;
-            padding: 50px 40px;
+            background: rgba(20, 10, 30, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 50px;
+            padding: clamp(20px, 5vw, 50px) clamp(20px, 4vw, 40px);
             box-shadow: 
-                0 50px 80px rgba(0, 0, 0, 0.7),
-                0 0 0 2px rgba(255, 215, 0, 0.3) inset,
-                0 0 30px rgba(255, 215, 0, 0.2);
-            border: 1px solid rgba(255, 215, 0, 0.4);
+                0 30px 50px rgba(0, 0, 0, 0.6),
+                0 0 0 2px rgba(128, 0, 255, 0.3) inset,
+                0 0 30px rgba(0, 255, 0, 0.2),
+                0 20px 40px rgba(128, 0, 255, 0.3);
+            border: 1px solid rgba(0, 255, 0, 0.2);
             transform-style: preserve-3d;
-            transform: translateZ(30px) rotateX(2deg);
+            transform: translateZ(30px);
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            width: 100%;
+            margin: 0 auto;
         }
 
         .card:hover {
-            transform: translateZ(50px) rotateX(1deg) rotateY(1deg);
+            transform: translateZ(50px) scale(1.02);
             box-shadow: 
-                0 70px 100px rgba(0, 0, 0, 0.8),
-                0 0 0 3px rgba(255, 215, 0, 0.5) inset,
-                0 0 50px rgba(255, 215, 0, 0.4);
+                0 40px 70px rgba(0, 0, 0, 0.8),
+                0 0 0 3px rgba(128, 0, 255, 0.5) inset,
+                0 0 50px rgba(0, 255, 0, 0.4),
+                0 30px 60px rgba(128, 0, 255, 0.4);
         }
 
-        /* 3D लेयर्स */
+        /* पर्पल-ग्रीन ग्रेडियंट लेयर्स */
         .card::before {
             content: '';
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(145deg, #ffd700, #b8860b);
-            border-radius: 40px;
+            top: 15px;
+            left: 15px;
+            right: -15px;
+            bottom: -15px;
+            background: linear-gradient(135deg, #8a2be2, #00ff00, #4b0082);
+            border-radius: 50px;
             z-index: -1;
-            opacity: 0.3;
-            filter: blur(8px);
-            transform: translateZ(-20px);
+            opacity: 0.4;
+            filter: blur(12px);
+            transform: translateZ(-25px);
             transition: all 0.5s ease;
+            animation: gradientShift 8s infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { opacity: 0.3; filter: blur(15px); }
+            100% { opacity: 0.6; filter: blur(20px); }
         }
 
         .card::after {
@@ -86,369 +131,498 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.2), transparent 70%);
-            border-radius: 40px;
+            background: radial-gradient(circle at 30% 40%, rgba(128,0,255,0.2), rgba(0,255,0,0.1), transparent 70%);
+            border-radius: 50px;
             pointer-events: none;
+            z-index: 1;
         }
 
-        /* 3D लोगो */
-        .logo-container {
+        /* 3D लोगो कंटेनर */
+        .logo-wrapper {
             position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 30px;
+            width: min(180px, 35vw);
+            height: min(180px, 35vw);
+            margin: 0 auto clamp(15px, 4vh, 30px);
             transform-style: preserve-3d;
-            animation: logoFloat 6s infinite ease-in-out;
         }
 
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0) rotateY(0deg) translateZ(20px); }
-            50% { transform: translateY(-15px) rotateY(10deg) translateZ(40px); }
-        }
-
-        .logo {
+        .logo-3d {
             width: 100%;
             height: 100%;
-            background: linear-gradient(145deg, #ffd700, #b8860b, #8b6910);
-            border-radius: 50%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: logoSpin 10s infinite cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes logoSpin {
+            0%, 100% { transform: rotateY(0deg) rotateX(10deg) translateZ(20px); }
+            25% { transform: rotateY(90deg) rotateX(20deg) translateZ(40px); }
+            50% { transform: rotateY(180deg) rotateX(10deg) translateZ(20px); }
+            75% { transform: rotateY(270deg) rotateX(0deg) translateZ(40px); }
+        }
+
+        .logo-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 
-                0 20px 40px rgba(0,0,0,0.6),
-                0 0 0 3px rgba(255,255,255,0.3),
-                0 0 30px #ffd700;
-            transform: translateZ(30px) rotateY(0deg);
-            position: relative;
-            border: 2px solid rgba(255,255,255,0.5);
-        }
-
-        .logo span {
-            font-size: 80px;
-            color: white;
-            text-shadow: 
-                0 2px 5px rgba(0,0,0,0.5),
-                0 0 20px rgba(255,255,255,0.8);
-            transform: translateZ(20px);
-        }
-
-        /* लोगोचे 3D रिंग */
-        .logo-ring {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 3px solid rgba(255,215,0,0.6);
             border-radius: 50%;
-            border-top-color: transparent;
-            border-bottom-color: transparent;
-            transform: rotateX(60deg) rotateZ(0deg) translateZ(-10px);
-            animation: ringRotate 8s infinite linear;
+            backface-visibility: hidden;
         }
 
-        @keyframes ringRotate {
-            0% { transform: rotateX(60deg) rotateZ(0deg) translateZ(-10px); }
-            100% { transform: rotateX(60deg) rotateZ(360deg) translateZ(-10px); }
-        }
-
-        /* टेक्स्ट इफेक्ट्स */
-        h1 {
-            color: #fff;
-            font-size: 42px;
-            margin-bottom: 15px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 
-                0 2px 0 #b8860b,
-                0 4px 0 #8b6910,
-                0 6px 10px rgba(0,0,0,0.5);
+        .logo-front {
+            background: linear-gradient(135deg, #8a2be2, #9370db, #4b0082);
             transform: translateZ(25px);
-            position: relative;
+            box-shadow: 
+                0 0 30px #8a2be2,
+                0 0 60px #00ff00,
+                inset 0 0 20px rgba(255,255,255,0.5);
+            border: 2px solid #00ff00;
         }
 
-        .report-id {
-            font-size: 48px;
-            font-weight: 900;
-            background: linear-gradient(180deg, #ffd700, #fff2b5, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 
-                0 2px 10px rgba(255,215,0,0.5),
-                0 0 30px rgba(255,215,0,0.3);
-            margin-bottom: 20px;
-            letter-spacing: 4px;
-            transform: translateZ(30px);
-            position: relative;
-            display: inline-block;
-            padding: 0 20px;
+        .logo-front span {
+            font-size: min(80px, 15vw);
+            filter: drop-shadow(0 0 20px #00ff00);
+            animation: pulse 2s infinite;
         }
 
-        .report-id::before,
-        .report-id::after {
-            content: '♦';
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .logo-back {
+            background: linear-gradient(135deg, #00ff00, #32cd32, #228b22);
+            transform: rotateY(180deg) translateZ(25px);
+            box-shadow: 
+                0 0 30px #00ff00,
+                0 0 60px #8a2be2,
+                inset 0 0 20px rgba(255,255,255,0.5);
+            border: 2px solid #8a2be2;
+        }
+
+        .logo-back span {
+            font-size: min(80px, 15vw);
+            color: #8a2be2;
+            filter: drop-shadow(0 0 20px #8a2be2);
+        }
+
+        /* फ्लोटिंग रिंग्स */
+        .rings {
             position: absolute;
             top: 50%;
-            transform: translateY(-50%);
-            color: #ffd700;
-            font-size: 30px;
-            text-shadow: 0 0 20px #ffd700;
-        }
-
-        .report-id::before {
-            left: -15px;
-        }
-
-        .report-id::after {
-            right: -15px;
-        }
-
-        .description {
-            color: #e0e0e0;
-            font-size: 20px;
-            margin-bottom: 40px;
-            line-height: 1.8;
-            padding: 0 20px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            transform: translateZ(20px);
-            background: rgba(0,0,0,0.3);
-            border-radius: 50px;
-            padding: 15px 25px;
-            border-left: 4px solid #ffd700;
-            border-right: 4px solid #ffd700;
-        }
-
-        /* 3D बटन */
-        .btn-container {
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130%;
+            height: 130%;
             transform-style: preserve-3d;
-            margin: 40px 0;
-            position: relative;
         }
 
-        .btn {
-            display: inline-block;
-            background: linear-gradient(145deg, #ffd700, #b8860b);
-            color: #1a0f2e;
-            text-decoration: none;
-            padding: 22px 55px;
-            border-radius: 60px;
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 
-                0 20px 30px rgba(0,0,0,0.6),
-                0 10px 0 #8b6910,
-                0 0 30px rgba(255,215,0,0.5);
-            transform: translateZ(40px) translateY(-5px);
-            position: relative;
-            text-transform: uppercase;
-            width: 100%;
-            max-width: 400px;
-            border: 2px solid rgba(255,255,255,0.5);
-        }
-
-        .btn:hover {
-            transform: translateZ(60px) translateY(-10px);
-            box-shadow: 
-                0 30px 40px rgba(0,0,0,0.8),
-                0 15px 0 #8b6910,
-                0 0 50px rgba(255,215,0,0.8);
-            background: linear-gradient(145deg, #ffdf40, #c8960b);
-        }
-
-        .btn:active {
-            transform: translateZ(30px) translateY(0);
-            box-shadow: 
-                0 15px 20px rgba(0,0,0,0.6),
-                0 5px 0 #8b6910,
-                0 0 30px rgba(255,215,0,0.5);
-        }
-
-        /* 3D सिक्युरिटी बॅज */
-        .security-badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 35px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(255,215,0,0.3);
-            transform-style: preserve-3d;
-            flex-wrap: wrap;
-        }
-
-        .badge-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #ffd700;
-            font-size: 18px;
-            font-weight: 600;
-            padding: 10px 20px;
-            background: rgba(0,0,0,0.4);
-            border-radius: 40px;
-            border: 1px solid rgba(255,215,0,0.3);
-            transform: translateZ(25px);
-            transition: all 0.3s;
-            backdrop-filter: blur(5px);
-        }
-
-        .badge-item:hover {
-            transform: translateZ(35px) scale(1.05);
-            background: rgba(0,0,0,0.6);
-            border-color: #ffd700;
-            box-shadow: 0 0 30px rgba(255,215,0,0.3);
-        }
-
-        .badge-item i {
-            font-size: 24px;
-            filter: drop-shadow(0 0 10px #ffd700);
-        }
-
-        .footer {
-            margin-top: 30px;
-            color: rgba(255,215,0,0.7);
-            font-size: 16px;
-            transform: translateZ(15px);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* 3D डेकोरेटिव एलिमेंट्स */
-        .floating-3d-objects {
+        .ring {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            transform-style: preserve-3d;
+            border: 3px solid;
+            border-radius: 50%;
+            border-top-color: #8a2be2;
+            border-bottom-color: #00ff00;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            animation: ringRotate 6s infinite linear;
         }
 
-        .obj {
+        .ring:nth-child(2) {
+            width: 115%;
+            height: 115%;
+            top: -7.5%;
+            left: -7.5%;
+            border-top-color: #00ff00;
+            border-bottom-color: #8a2be2;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            animation-direction: reverse;
+            animation-duration: 4s;
+        }
+
+        @keyframes ringRotate {
+            0% { transform: rotateZ(0deg) rotateX(60deg) translateZ(10px); }
+            100% { transform: rotateZ(360deg) rotateX(60deg) translateZ(10px); }
+        }
+
+        /* टेक्स्ट स्टाइलिंग */
+        h1 {
+            color: #fff;
+            font-size: clamp(28px, 6vw, 48px);
+            margin-bottom: clamp(5px, 2vh, 15px);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: clamp(1px, 1vw, 4px);
+            text-shadow: 
+                0 2px 0 #8a2be2,
+                0 4px 0 #00ff00,
+                0 6px 15px rgba(0,0,0,0.5);
+            transform: translateZ(30px);
+            word-break: break-word;
+        }
+
+        .report-badge {
+            font-size: clamp(32px, 7vw, 52px);
+            font-weight: 900;
+            background: linear-gradient(135deg, #8a2be2, #00ff00, #9370db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 
+                0 0 30px #8a2be2,
+                0 0 60px #00ff00;
+            margin-bottom: clamp(15px, 4vh, 25px);
+            letter-spacing: clamp(2px, 2vw, 6px);
+            transform: translateZ(35px);
+            display: inline-block;
+            padding: 0 clamp(10px, 3vw, 25px);
+            position: relative;
+        }
+
+        .report-badge::before,
+        .report-badge::after {
+            content: '⚡';
             position: absolute;
-            width: 60px;
-            height: 60px;
-            background: rgba(255,215,0,0.1);
-            border: 2px solid rgba(255,215,0,0.3);
-            transform-style: preserve-3d;
-            animation: float3d 15s infinite linear;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00ff00;
+            font-size: clamp(20px, 5vw, 35px);
+            text-shadow: 0 0 20px #8a2be2;
+            animation: spark 1.5s infinite;
         }
 
-        .obj1 {
+        @keyframes spark {
+            0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+        }
+
+        .report-badge::before {
+            left: -5px;
+        }
+
+        .report-badge::after {
+            right: -5px;
+        }
+
+        .description-box {
+            color: #e0e0e0;
+            font-size: clamp(16px, 4vw, 20px);
+            margin-bottom: clamp(20px, 5vh, 40px);
+            line-height: 1.6;
+            padding: clamp(12px, 3vh, 20px) clamp(15px, 4vw, 30px);
+            transform: translateZ(25px);
+            background: rgba(138, 43, 226, 0.15);
+            border-radius: 60px;
+            border-left: 4px solid #8a2be2;
+            border-right: 4px solid #00ff00;
+            box-shadow: 0 0 30px rgba(0,255,0,0.2);
+            width: 100%;
+            word-break: break-word;
+        }
+
+        /* 3D बटन */
+        .button-3d {
+            transform-style: preserve-3d;
+            margin: clamp(20px, 5vh, 40px) 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #8a2be2, #9370db, #00ff00);
+            color: white;
+            text-decoration: none;
+            padding: clamp(15px, 4vw, 22px) clamp(30px, 8vw, 60px);
+            border-radius: 60px;
+            font-size: clamp(20px, 5vw, 28px);
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: 2px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 
+                0 15px 25px rgba(0,0,0,0.5),
+                0 8px 0 #4b0082,
+                0 12px 20px rgba(138,43,226,0.4),
+                0 0 30px rgba(0,255,0,0.3);
+            transform: translateZ(40px) translateY(-5px);
+            text-transform: uppercase;
+            width: auto;
+            min-width: min(280px, 80%);
+            max-width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: relative;
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                white-space: normal;
+                font-size: 20px;
+                padding: 15px 25px;
+            }
+        }
+
+        .btn:hover {
+            transform: translateZ(60px) translateY(-10px);
+            box-shadow: 
+                0 25px 35px rgba(0,0,0,0.6),
+                0 12px 0 #4b0082,
+                0 20px 30px rgba(138,43,226,0.6),
+                0 0 50px rgba(0,255,0,0.5);
+            background: linear-gradient(135deg, #9b4dff, #a47eff, #1aff1a);
+        }
+
+        .btn:active {
+            transform: translateZ(30px) translateY(0);
+            box-shadow: 
+                0 10px 20px rgba(0,0,0,0.5),
+                0 4px 0 #4b0082,
+                0 15px 25px rgba(138,43,226,0.4);
+        }
+
+        /* सिक्युरिटी बॅज */
+        .security-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(10px, 3vw, 30px);
+            margin-top: clamp(20px, 5vh, 35px);
+            padding-top: clamp(15px, 4vh, 30px);
+            border-top: 2px solid;
+            border-image: linear-gradient(90deg, #8a2be2, #00ff00, #8a2be2) 1;
+            transform-style: preserve-3d;
+            flex-wrap: wrap;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-size: clamp(14px, 3.5vw, 18px);
+            font-weight: 600;
+            padding: clamp(8px, 2vh, 12px) clamp(12px, 3vw, 22px);
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 40px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            transform: translateZ(25px);
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(0,255,0,0.2);
+        }
+
+        .security-item:hover {
+            transform: translateZ(35px) scale(1.05);
+            background: rgba(138, 43, 226, 0.3);
+            border-color: #8a2be2;
+            box-shadow: 0 0 30px rgba(138,43,226,0.4);
+        }
+
+        .security-item i {
+            font-size: clamp(18px, 4vw, 24px);
+            filter: drop-shadow(0 0 10px #00ff00);
+        }
+
+        .footer-note {
+            margin-top: clamp(15px, 4vh, 30px);
+            color: rgba(0, 255, 0, 0.7);
+            font-size: clamp(12px, 3vw, 16px);
+            transform: translateZ(20px);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px #8a2be2;
+            word-break: break-word;
+        }
+
+        /* 3D फ्लोटिंग एलिमेंट्स */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .float-3d {
+            position: absolute;
+            width: clamp(30px, 8vw, 80px);
+            height: clamp(30px, 8vw, 80px);
+            background: linear-gradient(135deg, rgba(138,43,226,0.2), rgba(0,255,0,0.2));
+            border: 2px solid rgba(0,255,0,0.3);
+            transform-style: preserve-3d;
+            animation: floatAround 20s infinite linear;
+            border-radius: 20px;
+            backdrop-filter: blur(3px);
+        }
+
+        .float-3d:nth-child(1) {
             top: 10%;
             left: 5%;
-            transform: rotateX(45deg) rotateY(30deg) translateZ(50px);
-            animation-delay: 0s;
+            animation-duration: 25s;
         }
-
-        .obj2 {
+        .float-3d:nth-child(2) {
             bottom: 15%;
             right: 8%;
-            width: 80px;
-            height: 80px;
-            transform: rotateX(30deg) rotateY(-45deg) translateZ(70px);
+            width: clamp(40px, 10vw, 100px);
+            height: clamp(40px, 10vw, 100px);
+            animation-duration: 18s;
             animation-delay: -5s;
         }
+        .float-3d:nth-child(3) {
+            top: 20%;
+            right: 15%;
+            animation-duration: 22s;
+            animation-delay: -10s;
+        }
+        .float-3d:nth-child(4) {
+            bottom: 25%;
+            left: 10%;
+            animation-duration: 28s;
+            animation-delay: -15s;
+        }
 
-        @keyframes float3d {
-            0%, 100% { transform: rotateX(45deg) rotateY(30deg) translateZ(50px) translateY(0); }
-            50% { transform: rotateX(55deg) rotateY(40deg) translateZ(80px) translateY(-30px); }
+        @keyframes floatAround {
+            0% { transform: rotateX(0deg) rotateY(0deg) translateZ(0) translate(0, 0); }
+            33% { transform: rotateX(120deg) rotateY(90deg) translateZ(100px) translate(20px, -30px); }
+            66% { transform: rotateX(240deg) rotateY(180deg) translateZ(50px) translate(-30px, 20px); }
+            100% { transform: rotateX(360deg) rotateY(360deg) translateZ(0) translate(0, 0); }
+        }
+
+        /* रेस्पॉन्सिव्ह फिक्सेस */
+        @media (max-width: 768px) {
+            .card {
+                border-radius: 35px;
+            }
+            
+            .security-item {
+                width: calc(50% - 10px);
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
             .card {
-                padding: 30px 20px;
+                border-radius: 30px;
+                padding: 20px 15px;
             }
             
-            h1 {
-                font-size: 32px;
+            .security-item {
+                width: 100%;
             }
             
-            .report-id {
-                font-size: 36px;
+            .report-badge::before,
+            .report-badge::after {
+                display: none;
             }
-            
-            .btn {
-                padding: 18px 35px;
-                font-size: 24px;
-            }
-            
-            .logo-container {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .logo span {
-                font-size: 60px;
-            }
-            
-            .badge-item {
-                font-size: 15px;
-                padding: 8px 15px;
+        }
+
+        /* स्क्रीन फिट सुनिश्चित करण्यासाठी */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(10px, env(safe-area-inset-left));
+                padding-right: max(10px, env(safe-area-inset-right));
+                padding-top: max(10px, env(safe-area-inset-top));
+                padding-bottom: max(10px, env(safe-area-inset-bottom));
             }
         }
     </style>
 </head>
 <body>
-    <div class="scene">
-        <div class="card">
-            <!-- 3D फ्लोटिंग ऑब्जेक्ट्स -->
-            <div class="floating-3d-objects">
-                <div class="obj obj1">⬤</div>
-                <div class="obj obj2">♦</div>
-            </div>
+    <!-- फ्लोटिंग 3D एलिमेंट्स -->
+    <div class="floating-elements">
+        <div class="float-3d"></div>
+        <div class="float-3d"></div>
+        <div class="float-3d"></div>
+        <div class="float-3d"></div>
+    </div>
 
-            <!-- 3D लोगो -->
-            <div class="logo-container">
-                <div class="logo">
-                    <span>🆔</span>
+    <div class="container">
+        <div class="scene">
+            <div class="card">
+                <!-- 3D लोगो -->
+                <div class="logo-wrapper">
+                    <div class="logo-3d">
+                        <div class="logo-face logo-front">
+                            <span>🆔</span>
+                        </div>
+                        <div class="logo-face logo-back">
+                            <span>🇮🇳</span>
+                        </div>
+                    </div>
+                    <div class="rings">
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                    </div>
                 </div>
-                <div class="logo-ring"></div>
-                <div class="logo-ring" style="width: 130%; height: 130%; top: -15%; left: -15%; animation-direction: reverse;"></div>
-            </div>
 
-            <!-- मुख्य मजकूर -->
-            <h1>आधार रिपोर्ट</h1>
-            <div class="report-id">#40068</div>
+                <!-- मुख्य मजकूर -->
+                <h1>आधार रिपोर्ट</h1>
+                <div class="report-badge">#40068</div>
 
-            <div class="description">
-                <span style="font-size: 24px;">👑</span> 
-                तुमचा प्रिमियम आधार रिपोर्ट पाहण्यासाठी खालील 
-                <span style="color: #ffd700;">गोल्डन बटन</span> वर क्लिक करा
-                <span style="font-size: 24px;">👑</span>
-            </div>
-
-            <!-- 3D बटन कंटेनर -->
-            <div class="btn-container">
-                <a href="https://script.google.com/macros/s/AKfycbwcA3VwnNmdq9yOracT5YJGklULOxKVZtbVlXEgdZ8GcPLfxAcPsHsh_EkAeWRkICLh/exec" 
-                   target="_blank" 
-                   class="btn">
-                    📜 रिपोर्ट उघडा
-                </a>
-            </div>
-
-            <!-- 3D सिक्युरिटी बॅज -->
-            <div class="security-badge">
-                <div class="badge-item">
-                    <i>🔒</i> 3D सुरक्षित
+                <div class="description-box">
+                    <span style="color: #8a2be2;">⬤</span> 
+                    तुमचा प्रीमियम आधार रिपोर्ट पाहण्यासाठी 
+                    <span style="color: #00ff00;">ग्रीन बटन</span> वर क्लिक करा
+                    <span style="color: #00ff00;">⬤</span>
                 </div>
-                <div class="badge-item">
-                    <i>✓</i> गोल्ड प्रमाणित
-                </div>
-                <div class="badge-item">
-                    <i>🛡️</i> क्लासिक एन्क्रिप्टेड
-                </div>
-            </div>
 
-            <div class="footer">
-                ⚡ 3D क्लासिक एडिशन | नवीन टॅबमध्ये उघडेल ⚡
+                <!-- 3D बटन -->
+                <div class="button-3d">
+                    <a href="https://script.google.com/macros/s/AKfycbwcA3VwnNmdq9yOracT5YJGklULOxKVZtbVlXEgdZ8GcPLfxAcPsHsh_EkAeWRkICLh/exec" 
+                       target="_blank" 
+                       class="btn">
+                        📄 रिपोर्ट उघडा
+                    </a>
+                </div>
+
+                <!-- सिक्युरिटी बॅजेस -->
+                <div class="security-grid">
+                    <div class="security-item">
+                        <i>🔒</i> पर्पल सिक्योर
+                    </div>
+                    <div class="security-item">
+                        <i>🌿</i> ग्रीन एन्क्रिप्ट
+                    </div>
+                    <div class="security-item">
+                        <i>⚡</i> 3D वेरिफाइड
+                    </div>
+                    <div class="security-item">
+                        <i>🛡️</i> ड्युअल प्रोटेक्ट
+                    </div>
+                </div>
+
+                <div class="footer-note">
+                    ⚡ पर्पल & ग्रीन 3D एडिशन | फुल स्क्रीन फिट ⚡
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- स्क्रीन साइझ डिटेक्शन (ऐच्छिक) -->
+    <script>
+        // हे स्क्रीन साइझनुसार फॉन्ट समायोजित करण्यासाठी आहे
+        function adjustForScreen() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        window.addEventListener('resize', adjustForScreen);
+        window.addEventListener('orientationchange', adjustForScreen);
+        adjustForScreen();
+    </script>
 </body>
 </html>
