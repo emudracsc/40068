@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>आधार रिपोर्ट 40068 | पर्पल & ग्रीन 3D</title>
+    
+    <!-- Google Fonts - Poppins आणि Majestic साठी -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Poppins फॉन्ट -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Majestic फॉन्ट (Playfair Display चा वापर करू - हा Majestic सारखाच आहे) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -18,6 +27,7 @@
         }
 
         body {
+            /* Poppins मुख्य फॉन्ट म्हणून */
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: radial-gradient(circle at 0% 0%, #1a0f2e, #0a1f1a, #0a0a1f);
             min-height: 100vh;
@@ -27,6 +37,12 @@
             padding: 10px;
             perspective: 1200px;
             position: relative;
+        }
+
+        /* Majestic फॉन्ट फक्त हेडिंग आणि खास टेक्स्टसाठी */
+        h1, .report-badge, .majestic-text {
+            font-family: 'Playfair Display', 'Times New Roman', serif;
+            font-weight: 800;
         }
 
         /* फुल स्क्रीन 3D बॅकग्राउंड */
@@ -186,6 +202,7 @@
             font-size: min(80px, 15vw);
             filter: drop-shadow(0 0 20px #00ff00);
             animation: pulse 2s infinite;
+            font-family: 'Poppins', sans-serif; /* Poppins for the icon text */
         }
 
         @keyframes pulse {
@@ -207,6 +224,7 @@
             font-size: min(80px, 15vw);
             color: #8a2be2;
             filter: drop-shadow(0 0 20px #8a2be2);
+            font-family: 'Poppins', sans-serif;
         }
 
         /* फ्लोटिंग रिंग्स */
@@ -253,8 +271,9 @@
             100% { transform: rotateZ(360deg) rotateX(60deg) translateZ(10px); }
         }
 
-        /* टेक्स्ट स्टाइलिंग */
+        /* टेक्स्ट स्टाइलिंग - Poppins + Majestic कॉम्बो */
         h1 {
+            font-family: 'Playfair Display', 'Times New Roman', serif; /* Majestic effect */
             color: #fff;
             font-size: clamp(28px, 6vw, 48px);
             margin-bottom: clamp(5px, 2vh, 15px);
@@ -267,9 +286,11 @@
                 0 6px 15px rgba(0,0,0,0.5);
             transform: translateZ(30px);
             word-break: break-word;
+            font-style: italic; /* Majestic ला italic छान दिसतो */
         }
 
         .report-badge {
+            font-family: 'Playfair Display', 'Times New Roman', serif; /* Majestic effect */
             font-size: clamp(32px, 7vw, 52px);
             font-weight: 900;
             background: linear-gradient(135deg, #8a2be2, #00ff00, #9370db);
@@ -284,6 +305,7 @@
             display: inline-block;
             padding: 0 clamp(10px, 3vw, 25px);
             position: relative;
+            font-style: italic;
         }
 
         .report-badge::before,
@@ -296,6 +318,7 @@
             font-size: clamp(20px, 5vw, 35px);
             text-shadow: 0 0 20px #8a2be2;
             animation: spark 1.5s infinite;
+            font-family: 'Poppins', sans-serif; /* Poppins for icons */
         }
 
         @keyframes spark {
@@ -315,7 +338,7 @@
             color: #e0e0e0;
             font-size: clamp(16px, 4vw, 20px);
             margin-bottom: clamp(20px, 5vh, 40px);
-            line-height: 1.6;
+            line-height: 1.8;
             padding: clamp(12px, 3vh, 20px) clamp(15px, 4vw, 30px);
             transform: translateZ(25px);
             background: rgba(138, 43, 226, 0.15);
@@ -325,9 +348,11 @@
             box-shadow: 0 0 30px rgba(0,255,0,0.2);
             width: 100%;
             word-break: break-word;
+            font-family: 'Poppins', sans-serif; /* Poppins for description */
+            font-weight: 400;
         }
 
-        /* 3D बटन - आता त्याच टॅबमध्ये उघडेल */
+        /* 3D बटन */
         .button-3d {
             transform-style: preserve-3d;
             margin: clamp(20px, 5vh, 40px) 0;
@@ -363,6 +388,8 @@
             overflow: hidden;
             text-overflow: ellipsis;
             position: relative;
+            font-family: 'Poppins', sans-serif; /* Poppins for button */
+            font-weight: 600;
         }
 
         @media (max-width: 480px) {
@@ -411,7 +438,7 @@
             gap: 8px;
             color: #fff;
             font-size: clamp(14px, 3.5vw, 18px);
-            font-weight: 600;
+            font-weight: 500; /* Poppins medium */
             padding: clamp(8px, 2vh, 12px) clamp(12px, 3vw, 22px);
             background: rgba(138, 43, 226, 0.2);
             border-radius: 40px;
@@ -420,6 +447,7 @@
             transition: all 0.3s;
             backdrop-filter: blur(5px);
             box-shadow: 0 0 20px rgba(0,255,0,0.2);
+            font-family: 'Poppins', sans-serif;
         }
 
         .security-item:hover {
@@ -432,6 +460,7 @@
         .security-item i {
             font-size: clamp(18px, 4vw, 24px);
             filter: drop-shadow(0 0 10px #00ff00);
+            font-family: 'Poppins', sans-serif;
         }
 
         .footer-note {
@@ -443,6 +472,8 @@
             letter-spacing: 2px;
             text-shadow: 0 0 15px #8a2be2;
             word-break: break-word;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
         }
 
         /* 3D फ्लोटिंग एलिमेंट्स */
@@ -528,6 +559,10 @@
             .report-badge::after {
                 display: none;
             }
+            
+            h1 {
+                font-style: normal; /* मोबाईलवर italic काढू शकतो */
+            }
         }
 
         /* स्क्रीन फिट सुनिश्चित करण्यासाठी */
@@ -569,18 +604,19 @@
                     </div>
                 </div>
 
-                <!-- मुख्य मजकूर -->
+                <!-- मुख्य मजकूर - Majestic Font मध्ये -->
                 <h1>आधार रिपोर्ट</h1>
                 <div class="report-badge">#40068</div>
 
+                <!-- Poppins Font मध्ये डिस्क्रिप्शन -->
                 <div class="description-box">
-                    <span style="color: #8a2be2;">⬤</span> 
+                    <span style="color: #8a2be2; font-family: 'Poppins';">⬤</span> 
                     तुमचा प्रीमियम आधार रिपोर्ट पाहण्यासाठी 
-                    <span style="color: #00ff00;">ग्रीन बटन</span> वर क्लिक करा
-                    <span style="color: #00ff00;">⬤</span>
+                    <span style="color: #00ff00; font-family: 'Poppins'; font-weight: 600;">ग्रीन बटन</span> वर क्लिक करा
+                    <span style="color: #00ff00; font-family: 'Poppins';">⬤</span>
                 </div>
 
-                <!-- 3D बटन - आता त्याच टॅबमध्ये उघडेल -->
+                <!-- 3D बटन - Poppins Font मध्ये -->
                 <div class="button-3d">
                     <a href="https://script.google.com/macros/s/AKfycbwcA3VwnNmdq9yOracT5YJGklULOxKVZtbVlXEgdZ8GcPLfxAcPsHsh_EkAeWRkICLh/exec" 
                        class="btn">
@@ -588,7 +624,7 @@
                     </a>
                 </div>
 
-                <!-- सिक्युरिटी बॅजेस -->
+                <!-- सिक्युरिटी बॅजेस - Poppins Font मध्ये -->
                 <div class="security-grid">
                     <div class="security-item">
                         <i>🔒</i> पर्पल सिक्योर
@@ -604,14 +640,15 @@
                     </div>
                 </div>
 
+                <!-- फूटर - Poppins Light -->
                 <div class="footer-note">
-                    ⚡ पर्पल & ग्रीन 3D एडिशन | त्याच टॅबमध्ये उघडेल ⚡
+                    ⚡ पर्पल & ग्रीन 3D | Poppins ✦ Majestic ⚡
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- स्क्रीन साइझ डिटेक्शन (ऐच्छिक) -->
+    <!-- स्क्रीन साइझ डिटेक्शन -->
     <script>
         function adjustForScreen() {
             const vh = window.innerHeight * 0.01;
