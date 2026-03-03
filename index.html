@@ -1,0 +1,382 @@
+    body {
+        font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: radial-gradient(circle at 20% 20%, #2b1a4a, #0f0c1f);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        perspective: 1200px;
+        overflow-x: hidden;
+    }
+
+    /* 3D सीन सेटअप */
+    .scene {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        transform-style: preserve-3d;
+        animation: sceneRotate 20s infinite alternate ease-in-out;
+    }
+
+    @keyframes sceneRotate {
+        0% { transform: rotateY(-2deg) rotateX(2deg); }
+        100% { transform: rotateY(2deg) rotateX(-2deg); }
+    }
+
+    /* मुख्य कार्ड - 3D ट्रान्सफॉर्मेशन */
+    .card {
+        background: rgba(20, 15, 40, 0.85);
+        backdrop-filter: blur(15px);
+        border-radius: 40px;
+        padding: 50px 40px;
+        box-shadow: 
+            0 50px 80px rgba(0, 0, 0, 0.7),
+            0 0 0 2px rgba(255, 215, 0, 0.3) inset,
+            0 0 30px rgba(255, 215, 0, 0.2);
+        border: 1px solid rgba(255, 215, 0, 0.4);
+        transform-style: preserve-3d;
+        transform: translateZ(30px) rotateX(2deg);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+    }
+
+    .card:hover {
+        transform: translateZ(50px) rotateX(1deg) rotateY(1deg);
+        box-shadow: 
+            0 70px 100px rgba(0, 0, 0, 0.8),
+            0 0 0 3px rgba(255, 215, 0, 0.5) inset,
+            0 0 50px rgba(255, 215, 0, 0.4);
+    }
+
+    /* 3D लेयर्स */
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: -10px;
+        bottom: -10px;
+        background: linear-gradient(145deg, #ffd700, #b8860b);
+        border-radius: 40px;
+        z-index: -1;
+        opacity: 0.3;
+        filter: blur(8px);
+        transform: translateZ(-20px);
+        transition: all 0.5s ease;
+    }
+
+    .card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.2), transparent 70%);
+        border-radius: 40px;
+        pointer-events: none;
+    }
+
+    /* 3D लोगो */
+    .logo-container {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 30px;
+        transform-style: preserve-3d;
+        animation: logoFloat 6s infinite ease-in-out;
+    }
+
+    @keyframes logoFloat {
+        0%, 100% { transform: translateY(0) rotateY(0deg) translateZ(20px); }
+        50% { transform: translateY(-15px) rotateY(10deg) translateZ(40px); }
+    }
+
+    .logo {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(145deg, #ffd700, #b8860b, #8b6910);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 
+            0 20px 40px rgba(0,0,0,0.6),
+            0 0 0 3px rgba(255,255,255,0.3),
+            0 0 30px #ffd700;
+        transform: translateZ(30px) rotateY(0deg);
+        position: relative;
+        border: 2px solid rgba(255,255,255,0.5);
+    }
+
+    .logo span {
+        font-size: 80px;
+        color: white;
+        text-shadow: 
+            0 2px 5px rgba(0,0,0,0.5),
+            0 0 20px rgba(255,255,255,0.8);
+        transform: translateZ(20px);
+    }
+
+    /* लोगोचे 3D रिंग */
+    .logo-ring {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border: 3px solid rgba(255,215,0,0.6);
+        border-radius: 50%;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+        transform: rotateX(60deg) rotateZ(0deg) translateZ(-10px);
+        animation: ringRotate 8s infinite linear;
+    }
+
+    @keyframes ringRotate {
+        0% { transform: rotateX(60deg) rotateZ(0deg) translateZ(-10px); }
+        100% { transform: rotateX(60deg) rotateZ(360deg) translateZ(-10px); }
+    }
+
+    /* टेक्स्ट इफेक्ट्स */
+    h1 {
+        color: #fff;
+        font-size: 42px;
+        margin-bottom: 15px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-shadow: 
+            0 2px 0 #b8860b,
+            0 4px 0 #8b6910,
+            0 6px 10px rgba(0,0,0,0.5);
+        transform: translateZ(25px);
+        position: relative;
+    }
+
+    .report-id {
+        font-size: 48px;
+        font-weight: 900;
+        background: linear-gradient(180deg, #ffd700, #fff2b5, #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 
+            0 2px 10px rgba(255,215,0,0.5),
+            0 0 30px rgba(255,215,0,0.3);
+        margin-bottom: 20px;
+        letter-spacing: 4px;
+        transform: translateZ(30px);
+        position: relative;
+        display: inline-block;
+        padding: 0 20px;
+    }
+
+    .report-id::before,
+    .report-id::after {
+        content: '♦';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #ffd700;
+        font-size: 30px;
+        text-shadow: 0 0 20px #ffd700;
+    }
+
+    .report-id::before {
+        left: -15px;
+    }
+
+    .report-id::after {
+        right: -15px;
+    }
+
+    .description {
+        color: #e0e0e0;
+        font-size: 20px;
+        margin-bottom: 40px;
+        line-height: 1.8;
+        padding: 0 20px;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        transform: translateZ(20px);
+        background: rgba(0,0,0,0.3);
+        border-radius: 50px;
+        padding: 15px 25px;
+        border-left: 4px solid #ffd700;
+        border-right: 4px solid #ffd700;
+    }
+
+    /* 3D बटन */
+    .btn-container {
+        transform-style: preserve-3d;
+        margin: 40px 0;
+        position: relative;
+    }
+
+    .btn {
+        display: inline-block;
+        background: linear-gradient(145deg, #ffd700, #b8860b);
+        color: #1a0f2e;
+        text-decoration: none;
+        padding: 22px 55px;
+        border-radius: 60px;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 
+            0 20px 30px rgba(0,0,0,0.6),
+            0 10px 0 #8b6910,
+            0 0 30px rgba(255,215,0,0.5);
+        transform: translateZ(40px) translateY(-5px);
+        position: relative;
+        text-transform: uppercase;
+        width: 100%;
+        max-width: 400px;
+        border: 2px solid rgba(255,255,255,0.5);
+    }
+
+    .btn:hover {
+        transform: translateZ(60px) translateY(-10px);
+        box-shadow: 
+            0 30px 40px rgba(0,0,0,0.8),
+            0 15px 0 #8b6910,
+            0 0 50px rgba(255,215,0,0.8);
+        background: linear-gradient(145deg, #ffdf40, #c8960b);
+    }
+
+    .btn:active {
+        transform: translateZ(30px) translateY(0);
+        box-shadow: 
+            0 15px 20px rgba(0,0,0,0.6),
+            0 5px 0 #8b6910,
+            0 0 30px rgba(255,215,0,0.5);
+    }
+
+    /* 3D सिक्युरिटी बॅज */
+    .security-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 35px;
+        padding-top: 30px;
+        border-top: 2px solid rgba(255,215,0,0.3);
+        transform-style: preserve-3d;
+        flex-wrap: wrap;
+    }
+
+    .badge-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #ffd700;
+        font-size: 18px;
+        font-weight: 600;
+        padding: 10px 20px;
+        background: rgba(0,0,0,0.4);
+        border-radius: 40px;
+        border: 1px solid rgba(255,215,0,0.3);
+        transform: translateZ(25px);
+        transition: all 0.3s;
+        backdrop-filter: blur(5px);
+    }
+
+    .badge-item:hover {
+        transform: translateZ(35px) scale(1.05);
+        background: rgba(0,0,0,0.6);
+        border-color: #ffd700;
+        box-shadow: 0 0 30px rgba(255,215,0,0.3);
+    }
+
+    .badge-item i {
+        font-size: 24px;
+        filter: drop-shadow(0 0 10px #ffd700);
+    }
+
+    .footer {
+        margin-top: 30px;
+        color: rgba(255,215,0,0.7);
+        font-size: 16px;
+        transform: translateZ(15px);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    /* 3D डेकोरेटिव एलिमेंट्स */
+    .floating-3d-objects {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transform-style: preserve-3d;
+    }
+
+    .obj {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background: rgba(255,215,0,0.1);
+        border: 2px solid rgba(255,215,0,0.3);
+        transform-style: preserve-3d;
+        animation: float3d 15s infinite linear;
+    }
+
+    .obj1 {
+        top: 10%;
+        left: 5%;
+        transform: rotateX(45deg) rotateY(30deg) translateZ(50px);
+        animation-delay: 0s;
+    }
+
+    .obj2 {
+        bottom: 15%;
+        right: 8%;
+        width: 80px;
+        height: 80px;
+        transform: rotateX(30deg) rotateY(-45deg) translateZ(70px);
+        animation-delay: -5s;
+    }
+
+    @keyframes float3d {
+        0%, 100% { transform: rotateX(45deg) rotateY(30deg) translateZ(50px) translateY(0); }
+        50% { transform: rotateX(55deg) rotateY(40deg) translateZ(80px) translateY(-30px); }
+    }
+
+    @media (max-width: 480px) {
+        .card {
+            padding: 30px 20px;
+        }
+        
+        h1 {
+            font-size: 32px;
+        }
+        
+        .report-id {
+            font-size: 36px;
+        }
+        
+        .btn {
+            padding: 18px 35px;
+            font-size: 24px;
+        }
+        
+        .logo-container {
+            width: 120px;
+            height: 120px;
+        }
+        
+        .logo span {
+            font-size: 60px;
+        }
+        
+        .badge-item {
+            font-size: 15px;
+            padding: 8px 15px;
+        }
+    }
+</style>
